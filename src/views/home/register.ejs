@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/home/register.css">
+    <script src="/js/home/register.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        헤더
+    </header>
+    <div class="container">
+        <div class="contents">
+            <div>
+                <h3>상품명</h3>
+                <input type="text" id="item-name">
+            </div>
+            <div class="img-notice-container">
+                <div style=" display: inline-block; width: 400px;">
+                    <div>
+                        <h3>상품 사진</h3>
+                        <input type="file" id="fileInput">
+                        <div class="img">
+                            <img src="" id="preview" alt="File Preview">
+                        </div>
+                    </div>
+                </div>
+                <div class="notice">
+                    <span class="notice-content">
+                        ※주의사항
+                        <br>
+                        -상품 등록시 이미지는 200x200 형태로 잘려 나옵니다
+                        <br>
+                        -큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다
+                        <br>
+                        -상품 가격은 다른 기호 없이 원화 기준으로 숫자만 입력해주시기 바랍니다 
+                    </span>
+                </div>
+            </div>
+            <div class="tag-price-container">
+                <div class="tag-content">
+                    <h3>분류</h3>
+                    <select id="tag">
+                        <option value="top">상의</option>
+                        <option value="pants">하의</option>
+                        <option value="shoes">신발</option>
+                        <option value="accessory">악세서리</option>
+                    </select>
+                </div>
+                <div class="price-content">
+                    <h3>상품가격</h3>
+                    <input type="number" id="price" min="0">
+                </div>
+            </div>
+            <div class="description">
+                <h3>설명</h3>
+                <input type="text" id="description">
+            </div>
+            <div class="button">
+                <button id="submit">추가하기</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
