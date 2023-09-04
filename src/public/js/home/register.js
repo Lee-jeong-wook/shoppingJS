@@ -1,19 +1,36 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const fileInput = document.getElementById('fileInput');
-    const preview = document.getElementById('preview');
+const submitBtn = document.getElementById('submit');
+const name = document.getElementById('item-name');
+const tag = document.getElementById('item-tag');
+const price = document.getElementById('item-price');
+const description = document.getElementById('item-description');
 
-    fileInput.addEventListener('change', function() {
-        let file = fileInput.files[0];
-        let reader = new FileReader();
-
-        reader.onload = function(e) {
-            preview.src = e.target.result;
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = "";
-        }
+const register = () => {
+    console.log(name.value, tag.value, price.value, description.value);
+    if (!name.value) return alert('이름을 입력해주세요');
+    if (!tag.value) return alert('분류를 입력해주세요');
+    // if (!imgUrl) return alert('이미지를 넣어주세요');
+    if (!price.value) return alert('가격을 입력해주세요');
+    if (!description.value) return alert('설명을 입력해주세요');
+    req = {
+        name: name.value,
+        tag: tag.value,
+        // imgUrl: imgUrl,
+        price: price.value,
+        description: description.value
+    }
+    fetch('/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(req)
+    }).then((res) => res.json()).then((res) => {
+        location.href = '/';
+        alert(res.cost)
+    })
+    .catch((err) => {
+        console.error(new Error(`${err}에러 발생`));
     });
-});
+}
+
+submitBtn.addEventListener('click', register);

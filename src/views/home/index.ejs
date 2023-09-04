@@ -3,14 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/home/login.css">
+    <link rel="stylesheet" href="/css/home/home.css">
+    <script src="/js/home/slide.js" defer></script>
+    <script src="/js/home/home.js" defer></script>
+    <script type="module" src="/js/home/list.js" defer></script>
     <title>Document</title>
 </head>
 <body>
     <header>
-        <div id="header">
-            헤더
-        </div>
+        헤더
     </header>
+    <div class="container">
+        <ul class="slide">
+            <li class="active"><img src="/images/slogan.jpg" alt=""></li>
+            <li><img src="/images/sale.jpg" alt=""></li>
+            <li><img src="/images/model.jpg" alt=""></li>
+        </ul>
+        <div class="slide_btn">
+                <ul class="slide_mark">
+                    
+                </ul>
+        </div>
+        <div class="select">
+            <select id='item-teg'>
+                <option value='all' selected>모두</option>
+                <option value='top'>상의</option>
+                <option value='pants'>하의</option>
+                <option value='shoes'>신발</option>
+                <option value='accessory'>악세서리</option>
+              </select>
+            
+              <select id='item-teg'>
+                <option value="price">가격 순</option>
+              </select>
+              <a href="/register">
+                <button>
+                    상품추가
+                </button>
+              </a>
+        </div>
+        <div class="item">
+            <ul class="item-contents">
+                <% items.name.forEach(function(itemName, index) { %>
+                    <!-- item.name을 돌려서 반복 횟수를 정함 -->
+                    <li>
+                        <div class="img">
+                            <img src=<%= items.img[index] %> alt="">
+                        </div>
+                        <span class="name"><%= itemName %></span>
+                        <span class="cost"><%= items.cost[index] %></span>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>

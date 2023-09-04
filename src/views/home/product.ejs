@@ -3,9 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/home/product.css">
     <title>Document</title>
 </head>
 <body>
-    상품
+    <header>
+        헤더
+    </header>
+    <div class="container">
+        <div class="contents">
+            <div class="item">
+                <div class="img">
+                    <img src=<%= items.img %> alt="">
+                </div>
+                <span>하트</span>
+                <button>장바구니</button>
+            </div>
+            <div class="detail">
+                <h3 class="name"><%= items.name %></h3>
+                <span class="cost"><%= items.cost %></span>
+                <h3 class="description">description</h3>
+                <hr>
+                <div class="description-contents">
+                    <%= items.description %>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
