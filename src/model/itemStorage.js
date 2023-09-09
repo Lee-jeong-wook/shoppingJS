@@ -3,6 +3,7 @@
 const fs = require('fs').promises;
 
 class ItemStorage {
+    //이름으로 정보를 json파일에서 이름에 맞는 정보를 가져옴
     static #getItemInfo(data, name){
         const items = JSON.parse(data);
         const idx = items.name.indexOf(name);
@@ -13,6 +14,7 @@ class ItemStorage {
         }, {});
         return itemInfo;
     }
+    //ID으로 정보를 json파일에서 ID에 맞는 정보를 가져옴
     static #getItemInfoID(data, id){
         const items = JSON.parse(data);
         const idx = items.id.indexOf(id);
@@ -23,7 +25,7 @@ class ItemStorage {
         }, {});
         return itemInfo;
     }
-
+    //아이템 그 자체를 가져옴
     static #getItems(data, isAll, field){
         const items = JSON.parse(data);
         if(isAll) return items;
@@ -38,6 +40,7 @@ class ItemStorage {
         },{})
         return newItems;
     }
+    //아이템 그 자체를 가져옴
      static getItems(isAll ,...field){
         return fs
         .readFile('./src/databases/item.json')
@@ -48,6 +51,7 @@ class ItemStorage {
             console.log(`${err}`)
         });
     }
+    //이름으로 정보를 가져옴
     static getItemsInfo(name) {
         return fs
         .readFile('./src/databases/item.json')
@@ -58,6 +62,7 @@ class ItemStorage {
             console.log(`${err}`)
         });
     }
+    //ID로 정보를 가져옴
     static getItemsInfoID(ID) {
         return fs
         .readFile('./src/databases/item.json')
@@ -68,6 +73,57 @@ class ItemStorage {
             console.log(`${err}`)
         });
     }
+    //장바구니에 포함시키는 함수
+    static async includeBasket(name) {
+        try {
+            const itemsData = await fs.readFile('./src/databases/item.json', 'utf8');
+            const items = JSON.parse(itemsData);
+      
+            const itemIndex = items.name.indexOf(name);
+            if(items.amount[itemIndex]<1){
+                items.amount[itemIndex] += 1;
+            }
+      
+            // 변경된 아이템 데이터를 JSON 파일에 다시 쓰기
+            await fs.writeFile('./src/databases/item.json', JSON.stringify(items, null, '\t'));
+            return {success:true}
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      //장바구니 안에 수량을 조절하는 함수
+      static async handleBasket(item) {
+        try {
+            const itemsData = await fs.readFile('./src/databases/item.json', 'utf8');
+            const items = JSON.parse(itemsData);
+      
+            // 아이템을 찾아 inBasket 값을 true로 변경
+            const itemIndex = items.name.indexOf(item.name);
+            items.amount[itemIndex] += item.amount;
+      
+            // 변경된 아이템 데이터를 JSON 파일에 다시 쓰기
+            await fs.writeFile('./src/databases/item.json', JSON.stringify(items, null, '\t'));
+            return {success:true}
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      //장바구니 안에 요소를 삭제시키는 함수
+      static async deleteBasket(name) {
+        try {
+            const itemsData = await fs.readFile('./src/databases/item.json', 'utf8');
+            const items = JSON.parse(itemsData);
+      
+            const itemIndex = items.name.indexOf(name);
+            items.amount[itemIndex] = 0;
+      
+            // 변경된 아이템 데이터를 JSON 파일에 다시 쓰기
+            await fs.writeFile('./src/databases/item.json', JSON.stringify(items, null, '\t'));
+            return {success:true}
+        } catch (err) {
+          console.error(err);
+        }
+      }
 }
 
 module.exports = ItemStorage;

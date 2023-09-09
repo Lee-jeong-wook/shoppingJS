@@ -6,12 +6,19 @@
     <link rel="stylesheet" href="/css/home/home.css">
     <script src="/js/home/slide.js" defer></script>
     <script src="/js/home/home.js" defer></script>
-    <script type="module" src="/js/home/list.js" defer></script>
+    <script src="/js/home/tag.js" defer></script>
     <title>Document</title>
 </head>
 <body>
     <header>
-        헤더
+        <div>
+            <a href="/" class="logo">
+                <img src="/images/logo.png" alt="">
+            </a>
+            <a href="/basket" class="basket">
+                <img src="/images/basket.png" alt="">
+            </a>
+        </div>
     </header>
     <div class="container">
         <ul class="slide">
@@ -25,16 +32,12 @@
                 </ul>
         </div>
         <div class="select">
-            <select id='item-teg'>
+            <select id='item-tag'>
                 <option value='all' selected>모두</option>
                 <option value='top'>상의</option>
                 <option value='pants'>하의</option>
                 <option value='shoes'>신발</option>
                 <option value='accessory'>악세서리</option>
-              </select>
-            
-              <select id='item-teg'>
-                <option value="price">가격 순</option>
               </select>
               <a href="/register">
                 <button>
@@ -46,7 +49,8 @@
             <ul class="item-contents">
                 <% items.name.forEach(function(itemName, index) { %>
                     <!-- item.name을 돌려서 반복 횟수를 정함 -->
-                    <li>
+                    <% let active = 'active'; %>
+                    <li class=<%= items.tag[index] %>>
                         <div class="img">
                             <img src=<%= items.img[index] %> alt="">
                         </div>

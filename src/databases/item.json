@@ -4,47 +4,55 @@
 		"17264",
 		"47295",
 		"173538",
-        "178264",
-        "947637"
+		"178264",
+		"947637"
 	],
 	"name": [
 		"바지",
 		"후디",
 		"티셔츠",
 		"패딩",
-        "반지",
-        "신발"
+		"반지",
+		"신발"
 	],
-    "cost" : [
-        "30000",
-        "50000",
-        "20000",
-        "100000",
-        "25000",
-        "40000"
-    ],
-    "description" : [
-        "예쁜 바지",
-        "멋진 후디",
-        "미친 티셔츠",
-        "감성적 패딩",
-        "빛나는 반지",
-        "가성비 신발"
-    ],
-    "tag" : [
-        "pants",
-        "top",
-        "top",
-        "top",
-        "accessory",
-        "shoes"
-    ],
-    "img" : [
-        "/images/pants.jfif",
-        "/images/hood.jfif",
-        "/images/slide4.jpg",
-        "/images/padding.jfif",
-        "/images/ring.jfif",
-        "/images/shoes.jfif"
-    ]
+	"cost": [
+		"30000",
+		"50000",
+		"20000",
+		"100000",
+		"25000",
+		"40000"
+	],
+	"description": [
+		"예쁜 바지",
+		"멋진 후디",
+		"미친 티셔츠",
+		"감성적 패딩",
+		"빛나는 반지",
+		"가성비 신발"
+	],
+	"tag": [
+		"pants",
+		"top",
+		"top",
+		"top",
+		"accessory",
+		"shoes"
+	],
+	"img": [
+		"/images/pants.jfif",
+		"/images/hood.jfif",
+		"/images/slide4.jpg",
+		"/images/padding.jfif",
+		"/images/ring.jfif",
+		"/images/shoes.jfif"
+	],
+	"amount": [
+		0,
+		0,
+		0,
+		2,
+		1,
+		1
+	]
 }

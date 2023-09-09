@@ -4,24 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/home/basket.css">
+    <script src="/js/home/basket.js" defer></script>
     <title>Document</title>
 </head>
 <body>
     <header>
-        헤더
+        <div>
+            <a href="/" class="logo">
+                <img src="/images/logo.png" alt="">
+            </a>
+            <a href="/basket" class="basket">
+                <img src="/images/basket.png" alt="">
+            </a>
+        </div>
     </header>
     <section>
         <article>
             <h3>장바구니</h3>
             <div class="container">
-                <ul>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                <ul class="basket-list">
+                    <% items.name.forEach(function(itemName, index) { %>
+                        <!-- item.name을 돌려서 반복 횟수를 정함 -->
+                        <% if(items.amount[index]!==0){%>
+                        <li>
+                            <div class="img">
+                                <img src=<%= items.img[index] %> alt="">
+                            </div>
+                            <span class="name"><%= itemName %></span>
+                            <span class="cost"><%= items.cost[index]*items.amount[index]  %></span>
+                            <span class="amount"><%= items.amount[index] %></span>
+                            <div class="btnWrap">
+                                <span class="plus">+</span>
+                                <span class="minus">-</span>
+                            </div>
+                            <span class="delete">X</span>
+                        </li>
+                        <%};%>
+                    <% }); %>
                 </ul>
-                <div class="cost-section"><span id="cost">000,000원</span></div>
+                <div class="cost-section">
+                    <span id="cost">
+                        <span id="cost">
+                            <% let totalCost = 0; %>
+                            <% items.cost.forEach(function(itemCost, index) { %>
+                                <% if (items.amount[index] !== 0) { %>
+                                    <% totalCost += itemCost * items.amount[index]; %>
+                                <% } %>
+                            <% }); %>
+                            <%= totalCost %>
+                        </span>
+                    </span>
+                </div>
             </div>
         </article>
     </section>

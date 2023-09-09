@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/home/product.css">
+    <script src="/js/home/product.js" defer></script>
     <title>Document</title>
 </head>
 <body>
     <header>
-        헤더
+        <div>
+            <a href="/" class="logo">
+                <img src="/images/logo.png" alt="">
+            </a>
+            <a href="/basket" class="basket">
+                <img src="/images/basket.png" alt="">
+            </a>
+        </div>
     </header>
     <div class="container">
         <div class="contents">
@@ -16,13 +24,12 @@
                 <div class="img">
                     <img src=<%= items.img %> alt="">
                 </div>
-                <span>하트</span>
-                <button>장바구니</button>
+                <button class="basketBtn">장바구니</button>
             </div>
             <div class="detail">
                 <h3 class="name"><%= items.name %></h3>
                 <span class="cost"><%= items.cost %></span>
-                <h3 class="description">description</h3>
+                <h3 class="description">DESCRIPTION</h3>
                 <hr>
                 <div class="description-contents">
                     <%= items.description %>
