@@ -84,3 +84,7 @@ li{
     font-size: 30px;
     cursor: pointer;
 }
+#cost::after{
+    content: '원';
+    font-size: 14px;
+}

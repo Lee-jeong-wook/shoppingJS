@@ -28,6 +28,7 @@ class Item {
 
     async basketList() {
         const item = this.body;
+        console.log(item)
         if (item.type === 'handle'){
             await ItemStorage.handleBasket(item);
         } else if (item.type === 'delete'){

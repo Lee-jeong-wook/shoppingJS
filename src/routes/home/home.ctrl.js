@@ -74,7 +74,6 @@ const server = {
         return response;
     },
     basket: async (req, res) => {
-        console.log(req.body);
         const item = new Item(req.body);
         const response = await item.basketList();
     },
