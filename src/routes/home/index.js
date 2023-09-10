@@ -14,5 +14,6 @@ router.get('/register', ctrl.output.register)
 router.post('/', ctrl.server.home)
 router.post('/product', ctrl.server.product)
 router.post('/basket', ctrl.server.basket)
+router.post('/register', ctrl.server.register)
 
 module.exports= router;

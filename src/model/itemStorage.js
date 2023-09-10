@@ -90,40 +90,61 @@ class ItemStorage {
         } catch (err) {
           console.error(err);
         }
+    }
+    //장바구니 안에 수량을 조절하는 함수
+    static async handleBasket(item) {
+      try {
+          const itemsData = await fs.readFile('./src/databases/item.json', 'utf8');
+          const items = JSON.parse(itemsData);
+    
+          // 아이템을 찾아 inBasket 값을 true로 변경
+          const itemIndex = items.name.indexOf(item.name);
+          items.amount[itemIndex] += item.amount;
+    
+          // 변경된 아이템 데이터를 JSON 파일에 다시 쓰기
+          await fs.writeFile('./src/databases/item.json', JSON.stringify(items, null, '\t'));
+          return {success:true}
+      } catch (err) {
+        console.error(err);
       }
-      //장바구니 안에 수량을 조절하는 함수
-      static async handleBasket(item) {
-        try {
-            const itemsData = await fs.readFile('./src/databases/item.json', 'utf8');
-            const items = JSON.parse(itemsData);
-      
-            // 아이템을 찾아 inBasket 값을 true로 변경
-            const itemIndex = items.name.indexOf(item.name);
-            items.amount[itemIndex] += item.amount;
-      
-            // 변경된 아이템 데이터를 JSON 파일에 다시 쓰기
-            await fs.writeFile('./src/databases/item.json', JSON.stringify(items, null, '\t'));
-            return {success:true}
-        } catch (err) {
-          console.error(err);
-        }
+    }
+    //장바구니 안에 요소를 삭제시키는 함수
+    static async deleteBasket(name) {
+      try {
+          const itemsData = await fs.readFile('./src/databases/item.json', 'utf8');
+          const items = JSON.parse(itemsData);
+    
+          const itemIndex = items.name.indexOf(name);
+          items.amount[itemIndex] = 0;
+    
+          // 변경된 아이템 데이터를 JSON 파일에 다시 쓰기
+          await fs.writeFile('./src/databases/item.json', JSON.stringify(items, null, '\t'));
+          return {success:true}
+      } catch (err) {
+        console.error(err);
       }
-      //장바구니 안에 요소를 삭제시키는 함수
-      static async deleteBasket(name) {
-        try {
-            const itemsData = await fs.readFile('./src/databases/item.json', 'utf8');
-            const items = JSON.parse(itemsData);
+    }
+    static async create(item){
+      try{
+          const itemsData = await fs.readFile('./src/databases/item.json', 'utf8');
+          const items = JSON.parse(itemsData);
+
+          items.name.push(item.name);
+          items.id.push(item.id);
+          items.amount.push(item.amount);
+          items.tag.push(item.tag);
+          items.cost.push(item.price);
+          items.img.push(item.image);
+          items.description.push(item.description);
+          await fs.writeFile('./src/databases/item.json', JSON.stringify(items, null, '\t'));
+          return { success: true, message: '새로운 아이템이 추가되었습니다.' };
+      } catch (err) {
+        console.error(err);
+        return { success: false};
+    }
+
       
-            const itemIndex = items.name.indexOf(name);
-            items.amount[itemIndex] = 0;
-      
-            // 변경된 아이템 데이터를 JSON 파일에 다시 쓰기
-            await fs.writeFile('./src/databases/item.json', JSON.stringify(items, null, '\t'));
-            return {success:true}
-        } catch (err) {
-          console.error(err);
-        }
-      }
+    }
 }
 
 module.exports = ItemStorage;

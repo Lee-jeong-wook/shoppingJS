@@ -35,6 +35,11 @@ class Item {
         }
         return {success:true}
     }
+
+    async save() {
+        const item = this.body;
+        await ItemStorage.create(item);
+    }
 }
 
 module.exports = Item;

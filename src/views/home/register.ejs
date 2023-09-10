@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/home/register.css">
     <script src="/js/home/preview.js" defer></script>
-    <script src="/js/home/register.js" defer></script>
+    <!-- <script src="/js/home/register.js" defer></script> -->
     <title>Document</title>
 </head>
 <body>
@@ -20,16 +20,16 @@
         </div>
     </header>
     <div class="container">
-        <div class="contents">
+        <form class="contents" action="/register" method="POST" enctype="multipart/form-data">
             <div>
                 <h3>상품명</h3>
-                <input type="text" id="item-name">
+                <input type="text" id="item-name" name="itemName" required>
             </div>
             <div class="img-notice-container">
                 <div style=" display: inline-block; width: 400px;">
                     <div>
                         <h3>상품 사진</h3>
-                        <input type="file" id="fileInput">
+                        <input type="file" id="fileInput" name="itemImg" required>
                         <div class="img">
                             <img src="" id="preview" alt="File Preview">
                         </div>
@@ -50,7 +50,7 @@
             <div class="tag-price-container">
                 <div class="tag-content">
                     <h3>분류</h3>
-                    <select id="item-tag">
+                    <select id="item-tag" name="itemTag" required>
                         <option value="top">상의</option>
                         <option value="pants">하의</option>
                         <option value="shoes">신발</option>
@@ -59,17 +59,17 @@
                 </div>
                 <div class="price-content">
                     <h3>상품가격</h3>
-                    <input type="number" id="item-price" min="0">
+                    <input type="number" id="item-price" min="0" name="itemPrice" required>
                 </div>
             </div>
             <div class="description">
                 <h3>설명</h3>
-                <textarea id="item-description"></textarea>
+                <textarea id="item-description" name="itemDescription" required></textarea>
             </div>
             <div class="button">
                 <button id="submit">추가하기</button>
             </div>
-        </div>
+        </form>
     </div>
 </body>
 </html>
