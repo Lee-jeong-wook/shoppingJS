@@ -39,6 +39,7 @@ class Item {
     async save() {
         const item = this.body;
         await ItemStorage.create(item);
+        return {success:true};
     }
 }
 
