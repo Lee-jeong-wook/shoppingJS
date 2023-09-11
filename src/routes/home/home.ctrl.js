@@ -93,7 +93,7 @@ const server = {
             const id = Math.floor(Math.random() * 10000000);
             const newId = id.toString();
             const newItem = new Item({
-              id: id,
+              id: newId,
               name: itemName,
               tag: itemTag,
               price: itemPrice,
@@ -103,7 +103,6 @@ const server = {
             });
     
             await newItem.save();
-            res.redirect('/');
             return res.json({ success: true, message: '상품이 등록되었습니다.' });
           });
         } catch (err) {
